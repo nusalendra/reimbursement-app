@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Direktur;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
 
 class KaryawanController extends Controller
 {
@@ -13,7 +15,7 @@ class KaryawanController extends Controller
      */
     public function index()
     {
-        $data = User::where('jabatan', 'Finance')->where('jabatan', 'Staff')->get();
+        $data = User::where('jabatan', 'Finance')->orWhere('jabatan', 'Staff')->get();
         return view('pages.direktur.karyawan.index', compact('data'));
     }
 
@@ -22,7 +24,7 @@ class KaryawanController extends Controller
      */
     public function create()
     {
-        //
+        return view('pages.direktur.karyawan.create');
     }
 
     /**
@@ -30,7 +32,29 @@ class KaryawanController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validator = Validator::make($request->all(), [
+            'nama' => 'required|string',
+            'NIP' => 'required|max:18|unique:users,NIP',
+            'password' => 'required',
+            'jabatan' => 'required'
+        ]);
+        
+        if ($validator->fails()) {
+            return back()->withErrors($validator)->withInput();
+        }
+        
+        try {
+            $user = new User();
+            $user->nama = $request->nama;
+            $user->NIP = $request->NIP;
+            $user->password = Hash::make($request->password);
+            $user->jabatan = $request->jabatan;
+            $user->save();
+        
+            return redirect('/karyawan')->with('success', 'Karyawan berhasil ditambahkan.');;
+        } catch (\Exception $e) {
+            return back()->withInput()->withErrors(['error' => 'Gagal menyimpan data: ' . $e->getMessage()]);
+        }
     }
 
     /**
@@ -46,7 +70,8 @@ class KaryawanController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $data = User::find($id);
+        return view('pages.direktur.karyawan.edit', compact('data'));
     }
 
     /**
@@ -54,7 +79,29 @@ class KaryawanController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $validator = Validator::make($request->all(), [
+            'nama' => 'string',
+            'NIP' => 'max:18|unique:users,NIP',
+            'password' => '',
+            'jabatan' => ''
+        ]);
+        
+        if ($validator->fails()) {
+            return back()->withErrors($validator)->withInput();
+        }
+        
+        try {
+            $user = User::find($id);
+            $user->nama = $request->nama;
+            $user->NIP = $request->NIP;
+            $user->password = Hash::make($request->password);
+            $user->jabatan = $request->jabatan;
+            $user->save();
+        
+            return redirect('/karyawan');
+        } catch (\Exception $e) {
+            return back()->withInput()->withErrors(['error' => 'Gagal menyimpan data: ' . $e->getMessage()]);
+        }
     }
 
     /**
@@ -62,6 +109,9 @@ class KaryawanController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $user = User::find($id);
+        $user->delete();
+
+        return redirect('/karyawan');
     }
 }
