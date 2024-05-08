@@ -2,9 +2,7 @@
     <div class="py-12">
         <div class="max-w-5xl rounded-lg mx-auto sm:px-6 lg:px-8 bg-white shadow-md mb-4">
             <div class="max-w-4xl mx-auto py-6">
-                <div class=" py-4">
-                    <h5 class="py-2 mb-3 text-primary"><span class="text-black font-semibold">Edit Data Karyawan</h5>
-                </div>
+                <h5 class="py-1 mb-4 text-black font-semibold text-xl">Edit Data Karyawan</h5>
                 <form action="/karyawan/{{ $data->id }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     @method('put')
