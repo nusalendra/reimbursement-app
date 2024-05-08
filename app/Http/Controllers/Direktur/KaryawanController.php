@@ -51,7 +51,7 @@ class KaryawanController extends Controller
             $user->jabatan = $request->jabatan;
             $user->save();
         
-            return redirect('/karyawan')->with('success', 'Karyawan berhasil ditambahkan.');;
+            return redirect('/karyawan');
         } catch (\Exception $e) {
             return back()->withInput()->withErrors(['error' => 'Gagal menyimpan data: ' . $e->getMessage()]);
         }

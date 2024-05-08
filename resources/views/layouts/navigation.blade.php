@@ -35,7 +35,7 @@
                     </div>
                 @elseif(Auth::user()->jabatan == 'Staff')
                     <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                        <x-nav-link :href="route('profile.edit')" :active="request()->routeIs('profile.edit')">
+                        <x-nav-link :href="route('pengajuan-reimbursement')" :active="request()->routeIs('pengajuan-reimbursement')">
                             {{ __('Pengajuan Reimbursement') }}
                         </x-nav-link>
                     </div>
