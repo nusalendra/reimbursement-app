@@ -29,7 +29,14 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
-        return redirect()->intended(RouteServiceProvider::HOME);
+        if(Auth::user()->jabatan == 'Direktur') {
+            return redirect('/dashboard');
+        } elseif(Auth::user()->jabatan == 'Finance') {
+            return redirect('/daftar-pengajuan-reimbursement');
+        } elseif(Auth::user()->jabatan == 'Staff') {
+            return redirect('/pengajuan-reimbursement');
+        } 
+        // return redirect()->intended(RouteServiceProvider::HOME);
     }
 
     /**
