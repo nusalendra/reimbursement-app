@@ -3,7 +3,7 @@
         <div class="max-w-5xl rounded-lg mx-auto sm:px-6 lg:px-8 bg-white shadow-md mb-4">
             <div class="max-w-4xl mx-auto py-6">
                 <h5 class="py-1 mb-4 text-black font-bold text-xl text-center">Detail Pengajuan Reimbursement</h5>
-                <div class="grid grid-cols-2 gap-x-4">
+                <div class="grid gap-x-4">
                     <div class="mb-4">
                         <div class="flex justify-between">
                             <div>
