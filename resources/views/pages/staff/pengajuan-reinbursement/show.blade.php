@@ -31,6 +31,11 @@
                         </div>
                     </div>
                     <div class="mb-4">
+                        @if($data->penolakanReimbursement)
+                        <label for="" class="text-sm font-bold text-red-600">
+                           - Pengajuan Reimbursement Ditolak : {{ $data->penolakanReimbursement->alasan_penolakan }}
+                        </label>
+                        @endif
                         <label for="nama" class="block text-justify text-black">{{ $data->deskripsi }}</label>
                     </div>
                     <div class="mb-4 text-end">

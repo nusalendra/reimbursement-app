@@ -17,7 +17,8 @@ class PengajuanReinbursementController extends Controller
      */
     public function index()
     {
-        $data = Reimbursement::all();
+        $user = Auth::user();
+        $data = Reimbursement::where('user_id', $user->id)->get();
 
         return view('pages.staff.pengajuan-reinbursement.index', compact('data'));
     }
