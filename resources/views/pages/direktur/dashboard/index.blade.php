@@ -4,16 +4,18 @@
             {{ __('Dashboard') }}
         </h2>
     </x-slot>
-
+    
     <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="p-6 m-5 bg-white rounded shadow">
-                {!! $reimbursementDiterimaChart->container() !!}
+        <div class="max-w-full mx-auto sm:px-6 lg:px-8 grid grid-cols-2 gap-5">
+            <div class="bg-white rounded shadow">
+                <div class="p-6">
+                    {!! $reimbursementDiterimaChart->container() !!}
+                </div>
             </div>
-        </div>
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="p-6 m-5 bg-white rounded shadow">
-                {!! $pengajuanReimbursementChart->container() !!}
+            <div class="bg-white rounded shadow">
+                <div class="p-6">
+                    {!! $pengajuanReimbursementChart->container() !!}
+                </div>
             </div>
         </div>
     </div>
