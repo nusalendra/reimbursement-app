@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Direktur;
 
 use App\Http\Controllers\Controller;
+use App\Models\PenolakanReimbursement;
 use App\Models\Reimbursement;
 use Illuminate\Http\Request;
 
@@ -57,7 +58,18 @@ class KelolaReimbursementController extends Controller
     {
         try {
             $reimbursement = Reimbursement::find($id);
-            $reimbursement->status_pengajuan = $request->status_pengajuan;
+            
+            if ($request->status_pengajuan == 'Ditolak') {
+                $reimbursement->status_pengajuan = $request->status_pengajuan;
+
+                $penolakanReimbursement = new PenolakanReimbursement();
+                $penolakanReimbursement->reimbursement_id = $reimbursement->id;
+                $penolakanReimbursement->alasan_penolakan = $request->alasan_penolakan;
+                $penolakanReimbursement->save();
+            } else {
+                $reimbursement->status_pengajuan = $request->status_pengajuan;
+            }
+
             $reimbursement->save();
 
             return redirect('/kelola-reimbursement');
