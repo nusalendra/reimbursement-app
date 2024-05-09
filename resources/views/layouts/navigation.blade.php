@@ -29,7 +29,7 @@
                     </div>
                 @elseif(Auth::user()->jabatan == 'Finance')
                     <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                        <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
+                        <x-nav-link :href="route('daftar-pengajuan-reimbursement')" :active="request()->routeIs('daftar-pengajuan-reimbursement')">
                             {{ __('Daftar Pengajuan Reimbursement') }}
                         </x-nav-link>
                     </div>

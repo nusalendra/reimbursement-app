@@ -23,7 +23,7 @@ class RoleMiddleware
             case 'Direktur':
                 return redirect()->route('dashboard')->with('error', 'You do not have permission to access this page.');
             case 'Finance':
-                return redirect()->route('#')->with('error', 'You do not have permission to access this page.');
+                return redirect()->route('daftar-pengajuan-reimbursement')->with('error', 'You do not have permission to access this page.');
             case 'Staff':
                 return redirect()->route('pengajuan-reimbursement')->with('error', 'You do not have permission to access this page.');
             default:
