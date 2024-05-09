@@ -3,6 +3,7 @@
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Direktur\KaryawanController;
 use App\Http\Controllers\Direktur\KelolaReimbursementController;
+use App\Http\Controllers\Finance\DaftarPengajuanReimbursementController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Staff\PengajuanReinbursementController;
 use Illuminate\Support\Facades\Route;
@@ -43,7 +44,9 @@ Route::middleware('auth')->group(function () {
     });
 
     Route::group(['middleware' => 'jabatan:Finance'], function () {
-        
+        Route::get('/daftar-pengajuan-reimbursement', [DaftarPengajuanReimbursementController::class, 'index'])->name('daftar-pengajuan-reimbursement');
+        Route::get('/daftar-pengajuan-reimbursement/{id}', [DaftarPengajuanReimbursementController::class, 'show'])->name('daftar-pengajuan-reimbursement.show');
+        Route::put('/daftar-pengajuan-reimbursement/{id}', [DaftarPengajuanReimbursementController::class, 'update'])->name('daftar-pengajuan-reimbursement.update');
     });
 
     Route::group(['middleware' => 'jabatan:Staff'], function () {
