@@ -8,6 +8,14 @@
         {
             "src": "/public/**",
             "use": "@vercel/static"
+        },
+        {
+            "src": "/",
+            "use": {
+              "npm": {
+                "scripts": ["build"]
+              }
+            }
         }
     ],
     "routes": [
