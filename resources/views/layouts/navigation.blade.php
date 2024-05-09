@@ -33,6 +33,11 @@
                             {{ __('Daftar Pengajuan Reimbursement') }}
                         </x-nav-link>
                     </div>
+                    <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                        <x-nav-link :href="route('laporan-reimbursement')" :active="request()->routeIs('laporan-reimbursement')">
+                            {{ __('Laporan Reimbursement') }}
+                        </x-nav-link>
+                    </div>
                 @elseif(Auth::user()->jabatan == 'Staff')
                     <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                         <x-nav-link :href="route('pengajuan-reimbursement')" :active="request()->routeIs('pengajuan-reimbursement')">

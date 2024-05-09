@@ -2,7 +2,7 @@
     <div class="py-12">
         <div class="max-w-7xl rounded-md mx-auto sm:px-6 lg:px-8 bg-white">
             <div class="card">
-                <h5 class="font-bold py-4 text-lg">Daftar Pengajuan Reimbursement</h5>
+                <h5 class="font-bold py-4 text-lg">Laporan Reimbursement</h5>
                 <div class="card-body">
                     <div class="table-responsive">
                         <table id="myTable" class="table-auto min-w-full">
@@ -28,7 +28,7 @@
                                         <td class="border px-4 py-2 flex items-center justify-center">
                                             <div class="flex py-1">
                                                 <div class="flex flex-col justify-center items-center">
-                                                    <a href="/daftar-pengajuan-reimbursement/{{ $item->id }}">
+                                                    <a href="/laporan-reimbursement/{{ $item->id }}">
                                                         <button type="button"
                                                             class="focus:outline-none text-white bg-green-600 hover:bg-green-700 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:focus:ring-green-900">
                                                             <div class="flex items-center">

@@ -4,6 +4,7 @@ use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Direktur\KaryawanController;
 use App\Http\Controllers\Direktur\KelolaReimbursementController;
 use App\Http\Controllers\Finance\DaftarPengajuanReimbursementController;
+use App\Http\Controllers\Finance\LaporanReimbursementController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Staff\PengajuanReinbursementController;
 use Illuminate\Support\Facades\Route;
@@ -47,6 +48,10 @@ Route::middleware('auth')->group(function () {
         Route::get('/daftar-pengajuan-reimbursement', [DaftarPengajuanReimbursementController::class, 'index'])->name('daftar-pengajuan-reimbursement');
         Route::get('/daftar-pengajuan-reimbursement/{id}', [DaftarPengajuanReimbursementController::class, 'show'])->name('daftar-pengajuan-reimbursement.show');
         Route::put('/daftar-pengajuan-reimbursement/{id}', [DaftarPengajuanReimbursementController::class, 'update'])->name('daftar-pengajuan-reimbursement.update');
+        
+        Route::get('/laporan-reimbursement', [LaporanReimbursementController::class, 'index'])->name('laporan-reimbursement');
+        Route::get('/laporan-reimbursement/{id}', [LaporanReimbursementController::class, 'show'])->name('laporan-reimbursement.show');
+        Route::put('/laporan-reimbursement/{id}', [LaporanReimbursementController::class, 'update'])->name('laporan-reimbursement.update');
     });
 
     Route::group(['middleware' => 'jabatan:Staff'], function () {
