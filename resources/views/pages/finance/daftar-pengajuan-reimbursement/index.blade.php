@@ -1,4 +1,5 @@
 <x-app-layout>
+    @section('title', 'Daftar Pengajuan Reimbursement')
     <div class="py-12">
         <div class="max-w-7xl rounded-md mx-auto sm:px-6 lg:px-8 bg-white">
             <div class="card">

@@ -1,4 +1,5 @@
 <x-app-layout>
+    @section('title', 'Pengajuan Reimbursement')
     <div class="py-12">
         <div class="max-w-7xl rounded-md mx-auto text-end">
             <a href="/pengajuan-reimbursement/create">
