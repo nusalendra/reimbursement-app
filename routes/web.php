@@ -6,7 +6,6 @@ use App\Http\Controllers\Direktur\KaryawanController;
 use App\Http\Controllers\Direktur\KelolaReimbursementController;
 use App\Http\Controllers\Finance\DaftarPengajuanReimbursementController;
 use App\Http\Controllers\Finance\LaporanReimbursementController;
-use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Staff\PengajuanReinbursementController;
 use Illuminate\Support\Facades\Route;
 
@@ -21,15 +20,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::get('/', function () {
-//     return view('auth.login');
-// });
-
 Route::get('/', [AuthenticatedSessionController::class, 'create']);
-
-// Route::get('/dashboard', function () {
-//     return view('dashboard');
-// })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::group(['middleware' => 'jabatan:Direktur'], function () {
@@ -64,10 +55,6 @@ Route::middleware('auth')->group(function () {
         Route::get('/pengajuan-reimbursement/{id}', [PengajuanReinbursementController::class, 'show'])->name('pengajuan-reimbursement.show');
         Route::delete('/pengajuan-reimbursement/{id}', [PengajuanReinbursementController::class, 'destroy'])->name('pengajuan-reimbursement.destroy');
     });
-
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
 require __DIR__.'/auth.php';

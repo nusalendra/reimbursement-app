@@ -1,4 +1,5 @@
 <x-app-layout>
+    @section('title', 'Karyawan')
     <div class="py-12">
         <div class="max-w-7xl rounded-md mx-auto text-end">
             <a href="/karyawan/create">
