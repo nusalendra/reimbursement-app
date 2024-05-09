@@ -37,14 +37,60 @@
                     </div>
                 </div>
                 <div class="flex">
-                    <form action="/kelola-reimbursement/{{ $data->id }}" method="POST">
+                    <form id="reimbursementForm" action="/kelola-reimbursement/{{ $data->id }}"
+                        method="POST">
                         @csrf
                         @method('put')
-                        <button type="submit" value="Ditolak" name="status_pengajuan" class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">Tolak Pengajuan</button>
-                        <button type="submit" value="Disetujui" name="status_pengajuan" class="focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">Setujui Pengajuan</button>
+                        <input type="hidden" id="status_pengajuan" name="status_pengajuan">
+                        <input type="hidden" id="alasan_penolakan" name="alasan_penolakan">
+                        
+                        <button type="button" onclick="handlePengajuan('{{ $data->id }}', 'Ditolak')"
+                            value="Ditolak" name="tolak_pengajuan"
+                            class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">Tolak
+                            Pengajuan</button>
+                        <button type="button" onclick="handlePengajuan('{{ $data->id }}', 'Disetujui')"
+                            value="Disetujui" name="setujui_pengajuan"
+                            class="focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">Setujui Pengajuan</button>
                     </form>
                 </div>
             </div>
         </div>
     </div>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        async function handlePengajuan(id, status) {
+            if (status === 'Ditolak') {
+                const {
+                    value: alasan
+                } = await Swal.fire({
+                    title: "Penolakan Pengajuan",
+                    input: "select",
+                    inputOptions: {
+                        "Data Tidak Lengkap": "Data Tidak Lengkap",
+                        "Data Tidak Sesuai": "Data Tidak Sesuai"
+                    },
+                    inputPlaceholder: "Pilih Alasan Penolakan Pengajuan",
+                    showCancelButton: true,
+                    inputValidator: (value) => {
+                        return new Promise((resolve) => {
+                            if (value !== "") {
+                                resolve();
+                            } else {
+                                resolve("Anda perlu memilih alasan penolakan");
+                            }
+                        });
+                    }
+                });
+
+                if (alasan) {
+                    document.getElementById("status_pengajuan").value = 'Ditolak';
+                    document.getElementById("alasan_penolakan").value = alasan;
+                    document.getElementById("reimbursementForm").submit();
+                }
+            } else {
+                document.getElementById("status_pengajuan").value = 'Disetujui';
+                document.getElementById("reimbursementForm").submit();
+            }
+        }
+    </script>
 </x-app-layout>
