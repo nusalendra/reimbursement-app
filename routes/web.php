@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
+use App\Http\Controllers\Direktur\DashboardController;
 use App\Http\Controllers\Direktur\KaryawanController;
 use App\Http\Controllers\Direktur\KelolaReimbursementController;
 use App\Http\Controllers\Finance\DaftarPengajuanReimbursementController;
@@ -26,12 +27,14 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [AuthenticatedSessionController::class, 'create']);
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+// Route::get('/dashboard', function () {
+//     return view('dashboard');
+// })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::group(['middleware' => 'jabatan:Direktur'], function () {
+        Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+        
         Route::get('/karyawan', [KaryawanController::class, 'index'])->name('karyawan');
         Route::get('/karyawan/create', [KaryawanController::class, 'create'])->name('karyawan.create');
         Route::post('/karyawan', [KaryawanController::class, 'store'])->name('karyawan.store');
