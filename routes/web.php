@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Direktur\KaryawanController;
+use App\Http\Controllers\Direktur\KelolaReimbursementController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Staff\PengajuanReinbursementController;
 use Illuminate\Support\Facades\Route;
@@ -35,6 +36,10 @@ Route::middleware('auth')->group(function () {
         Route::get('/karyawan/{id}/edit', [KaryawanController::class, 'edit'])->name('karyawan.edit');
         Route::put('/karyawan/{id}', [KaryawanController::class, 'update'])->name('karyawan.update');
         Route::delete('/karyawan/{id}', [KaryawanController::class, 'destroy'])->name('karyawan.destroy');
+
+        Route::get('/kelola-reimbursement', [KelolaReimbursementController::class, 'index'])->name('kelola-reimbursement');
+        Route::get('/kelola-reimbursement/{id}', [KelolaReimbursementController::class, 'show'])->name('kelola-reimbursement.show');
+        Route::put('/kelola-reimbursement/{id}', [KelolaReimbursementController::class, 'update'])->name('kelola-reimbursement.update');
     });
 
     Route::group(['middleware' => 'jabatan:Finance'], function () {
