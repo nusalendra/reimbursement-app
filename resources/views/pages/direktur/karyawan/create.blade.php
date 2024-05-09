@@ -15,7 +15,7 @@
                         <label for="NIP" class="block text-sm font-medium">NIP <span class="text-red-500">*</span></label>
                         <input type="number" name="NIP" id="NIP" 
                             class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
-                            placeholder="Masukkan NIP Maksimal 18 Digit" required>
+                            placeholder="Masukkan NIP" required>
                     </div>
                     <div class="mb-4">
                         <label for="jabatan" class="block text-sm font-medium">Jabatan <span class="text-red-500">*</span></label>

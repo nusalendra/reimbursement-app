@@ -34,7 +34,7 @@ class KaryawanController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'nama' => 'required|string',
-            'NIP' => 'required|max:18|unique:users,NIP',
+            'NIP' => 'required|unique:users,NIP',
             'password' => 'required',
             'jabatan' => 'required'
         ]);
@@ -81,7 +81,7 @@ class KaryawanController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'nama' => 'string',
-            'NIP' => 'max:18|unique:users,NIP',
+            'NIP' => 'unique:users,NIP',
             'password' => '',
             'jabatan' => ''
         ]);
